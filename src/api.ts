@@ -49,6 +49,20 @@ const apiCall = async (ssoCookie: string, path: string) => {
       } as FakeResponse<AccountData>;
 
     default:
+      if (
+        path.startsWith(
+          "https://my.callofduty.com/api/papi-client/inventory/v1/title/"
+        )
+      ) {
+        return {
+          data: {
+            status: "success",
+            data: {
+              codPoints: 99999,
+            },
+          },
+        } as FakeResponse<CurrencyResponse>;
+      }
       return {
         data: {
           status: "error",
@@ -114,7 +128,12 @@ export class Title<MpProperties, WzProperties, ZmProperties> {
     "Vanguard",
     "vg",
     [Mode.Multiplayer, Mode.Zombies],
-    [Platform.BattleNet, Platform.XboxLive, Platform.PlaystationNetwork]
+    [
+      Platform.BattleNet,
+      Platform.XboxLive,
+      Platform.PlaystationNetwork,
+      Platform.Crossplay,
+    ]
   );
   static BlackOpsColdWar = new Title<
     BlackOpsColdWarProperties,
@@ -124,7 +143,12 @@ export class Title<MpProperties, WzProperties, ZmProperties> {
     "Black Ops Cold War",
     "cw",
     [Mode.Multiplayer, Mode.Zombies],
-    [Platform.BattleNet, Platform.XboxLive, Platform.PlaystationNetwork]
+    [
+      Platform.BattleNet,
+      Platform.XboxLive,
+      Platform.PlaystationNetwork,
+      Platform.Crossplay,
+    ]
   );
   static ModernWarfare2019 = new Title<
     ModernWarfare2019MpProperties,
@@ -134,7 +158,12 @@ export class Title<MpProperties, WzProperties, ZmProperties> {
     "Modern Warfare 2019",
     "mw",
     [Mode.Multiplayer, Mode.BattleRoyale],
-    [Platform.BattleNet, Platform.XboxLive, Platform.PlaystationNetwork]
+    [
+      Platform.BattleNet,
+      Platform.XboxLive,
+      Platform.PlaystationNetwork,
+      Platform.Crossplay,
+    ]
   );
   static BlackOps4 = new Title<
     BlackOps4MpProperties,
@@ -248,6 +277,10 @@ export const titles: Title<NoneProperties, NoneProperties, NoneProperties>[] = [
   Title.InfiniteWarfare,
   Title.BlackOps3,
 ];
+
+export const titleFromAPIId = (api: string) => {
+  return titles.find((t) => t.api === api);
+};
 
 export const getCodPoints = async (
   ssoCookie: string,

@@ -6,7 +6,7 @@ module.exports = {
   mode: "production",
   entry: {
     background: path.resolve(__dirname, "..", "src", "background.ts"),
-    bundle: path.resolve(__dirname, "..", "src", "index.tsx"),
+    bundle: path.resolve(__dirname, "..", "src", "App.tsx"),
   },
   output: {
     path: path.join(__dirname, "../dist"),

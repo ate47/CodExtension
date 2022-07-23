@@ -4,6 +4,8 @@ import ReactDOM from "react-dom";
 import { Main } from "./components/Main";
 import { getSSOCookie } from "./api";
 
+import T from "./i18n";
+
 const App = () => {
   const [cookie, setCookie] = useState<string>("");
 
@@ -18,19 +20,30 @@ const App = () => {
     loadCookie();
   });
 
-  return cookie === "" ? (
+  return (
     <div
       style={{
         textAlign: "center",
+        fontSize: "large",
+        color: "#d7d7d7",
+        height: "1vh",
       }}
     >
-      <h1>No cookie set</h1>
-      <button onClick={openLoginPage}>Open login page</button>
-      <button onClick={loadCookie}>Reload cookies</button>
+      {cookie === "" ? (
+        <div>
+          <h1>{T.translate("app.noCookie.title")}</h1>
+          <T.button onClick={openLoginPage} text="app.noCookie.openLogin" />
+          <T.button onClick={loadCookie} text="app.noCookie.reload" />
+        </div>
+      ) : (
+        <div>
+          <Main cookie={cookie} />
+        </div>
+      )}
     </div>
-  ) : (
-    <Main cookie={cookie} />
   );
 };
+
+document.title = T.translate("app.title") as string;
 
 ReactDOM.render(<App />, document.getElementById("app"));
