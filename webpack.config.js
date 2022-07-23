@@ -5,14 +5,18 @@ const webpack = require("webpack");
 module.exports = {
   mode: "production",
   entry: {
-    background: path.resolve(__dirname, "..", "src", "background.ts"),
-    bundle: path.resolve(__dirname, "..", "src", "App.tsx"),
+    background: path.resolve(__dirname, "src", "background.ts"),
+    bundle: path.resolve(__dirname, "src", "App.tsx"),
   },
   output: {
-    path: path.join(__dirname, "../dist"),
+    path: path.join(__dirname, "dist"),
     filename: "[name].js",
   },
   resolve: {
+    modules: [
+      path.resolve(__dirname, "node_modules"),
+      path.resolve(__dirname, "src"),
+    ],
     extensions: [".ts", ".js", ".tsx", ".jsx"],
   },
   module: {
@@ -30,7 +34,6 @@ module.exports = {
     }),
     new webpack.HotModuleReplacementPlugin(),
   ],
-  // ...add HowModuleReplacementPlugin and devServer
   devServer: {
     contentBase: path.resolve(__dirname, "./dist"),
     hot: true,

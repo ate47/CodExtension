@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useEffect } from "react";
 import {
   BlackOps3MpProperties,
   BlackOps4BlackoutProperties,

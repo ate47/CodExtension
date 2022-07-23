@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
-import { Main } from "./components/Main";
-import { getSSOCookie } from "./api";
+import { Main } from "components/Main";
+import { getSSOCookie } from "common/api";
 
-import T from "./i18n";
+import T from "common/i18n";
 
 const App = () => {
   const [cookie, setCookie] = useState<string>("");

@@ -6,11 +6,11 @@ import {
   Title,
   titleFromAPIId,
   titles,
-} from "../../api";
-import { NoneProperties, UsernameData } from "../../properties";
-import { User } from "../User";
+} from "common/api";
+import { NoneProperties, UsernameData } from "common/properties";
+import { User } from "components/User";
 
-import T from "../../i18n";
+import T from "common/i18n";
 
 export interface AppProps {
   cookie: string;

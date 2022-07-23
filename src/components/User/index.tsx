@@ -1,14 +1,8 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import {
-  getAccounts,
-  getCodPoints,
-  Platform,
-  prettyPlatformName,
-} from "../../api";
-import { UsernameData } from "../../properties";
-import { UsernamePlatform } from "../Main";
+import { getCodPoints } from "common/api";
+import { UsernamePlatform } from "components/Main";
 
-import T from "../../i18n";
+import T from "common/i18n";
 
 export interface UserProps {
   user: UsernamePlatform;
