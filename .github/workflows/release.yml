@@ -1,0 +1,68 @@
+name: Release version 🚀
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_made:
+        description: "I have update the release/RELEASE.md file to describe the release."
+        required: true
+        type: boolean
+
+jobs:
+  check_release:
+    name: Check input parameters
+    if: ${{ !inputs.release_made }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Release check wasn't checked"
+  build:
+    name: 🏗️ Building project
+    if: ${{ inputs.release_made }}
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version_get.outputs.version }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: ⚙️ Set up Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: "npm"
+      - name: 🌍 Fetch dependencies
+        run: npm ci
+      - name: 🏗️ Compile extension
+        run: "npm run build"
+      - name: 🏗️ compress extension
+        shell: pwsh
+        id: version_get
+        run: scripts/package.ps1
+      - name: ☁️ Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: "CodApiRead"
+          path: "CodApiRead.zip"
+  create_release:
+    name: 🚀 Create Github release
+    environment:
+      name: release
+      url: "https://github.com/ate47/CodExtension/releases/tag/v${{ needs.build.outputs.version }}"
+    needs:
+      - build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: ☁️ Download artifacts
+        uses: actions/download-artifact@v3
+      - name: ⚙️ Extract artifacts
+        run: |
+          mkdir -p deploy_file
+          mv CodApiRead/* deploy_file
+      - name: 🚀 Create release with artifacts
+        uses: ncipollo/release-action@v1
+        with:
+          commit: ${{ github.sha }}
+          tag: "v${{ needs.build.outputs.version }}"
+          artifacts: "deploy_file/*"
+          name: "Release ${{ needs.build.outputs.version }}"
+          bodyFile: "release/RELEASE.md"
+          token: ${{ secrets.GITHUB_TOKEN }}
