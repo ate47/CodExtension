@@ -31,11 +31,14 @@ jobs:
       - name: 🌍 Fetch dependencies
         run: npm ci
       - name: 🏗️ Compile extension
-        run: "npm run build"
-      - name: 🏗️ compress extension
-        shell: pwsh
         id: version_get
-        run: scripts/package.ps1
+        run: |
+          npm run build
+          rm -rf CodApiRead
+          cp -r dist CodApiRead
+          zip -r CodApiRead.zip CodApiRead
+          VERSION=$(npm run --silent version)
+          echo "::set-output name=version::$VERSION"
       - name: ☁️ Upload artifact
         uses: actions/upload-artifact@v3
         with:
