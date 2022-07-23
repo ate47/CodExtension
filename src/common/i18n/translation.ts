@@ -32,6 +32,11 @@ export interface Translation {
         level: string;
         prestige: string;
       };
+      advancedStats: {
+        show: string;
+        hide: string;
+        search: string;
+      };
     };
   };
 }
@@ -70,6 +75,11 @@ export const english: Translation = {
         level: "Level {level}",
         prestige: "Prestige {prestige}",
       },
+      advancedStats: {
+        show: "Show advanced stats",
+        hide: "Hide advanced stats",
+        search: "Search",
+      },
     },
   },
 };
@@ -107,6 +117,11 @@ export const french: Translation = {
       level: {
         level: "Niveau {level}",
         prestige: "Prestige {prestige}",
+      },
+      advancedStats: {
+        show: "Afficher stats advancées",
+        hide: "Cacher stats advancées",
+        search: "Chercher",
       },
     },
   },

@@ -6,6 +6,7 @@ import { Mode, Title } from "common/api";
 import { NoneProperties, StatsResponse } from "common/properties";
 import { UsernamePlatform } from "components/Main";
 import { Level } from "components/Level";
+import { AdvancedStats } from "components/AdvancedStats";
 
 export interface GameProps {
   title: Title<NoneProperties, NoneProperties, NoneProperties>;
@@ -82,6 +83,7 @@ export const Game = (props: GameProps) => {
             title={props.title}
           />
         )}
+        {stats && <AdvancedStats stats={stats} />}
       </div>
     </div>
   );

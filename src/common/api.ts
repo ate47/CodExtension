@@ -230,7 +230,7 @@ export class Title<MpProperties, WzProperties, ZmProperties> {
   >(
     "Call of Duty: Vanguard",
     "vg",
-    [(Mode.Multiplayer, Mode.Zombies)],
+    [Mode.Multiplayer, Mode.Zombies],
     [
       Platform.BattleNet,
       Platform.XboxLive,
@@ -249,7 +249,7 @@ export class Title<MpProperties, WzProperties, ZmProperties> {
   >(
     "Call of Duty: Black Ops Cold War",
     "cw",
-    [Mode.Multiplayer, Mode.Zombies],
+    [Mode.Multiplayer],
     [
       Platform.BattleNet,
       Platform.XboxLive,
@@ -398,9 +398,9 @@ export class Title<MpProperties, WzProperties, ZmProperties> {
   async getCodPoints(ssoCookie: string, username: string, platform: Platform) {
     const response = await apiCall(
       ssoCookie,
-      `https://my.callofduty.com/api/papi-client/inventory/v1/title/${
-        this.api
-      }/platform/${platform}/gamer/${encodeURIComponent(username)}/currency`
+      `https://my.callofduty.com/api/papi-client/inventory/v1/title/vg/platform/${platform}/gamer/${encodeURIComponent(
+        username
+      )}/currency`
     );
 
     const data = response.data as ApiResponse<CurrencyResponse>;
