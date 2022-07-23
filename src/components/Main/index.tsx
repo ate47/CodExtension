@@ -11,6 +11,7 @@ import { NoneProperties, UsernameData } from "common/properties";
 import { User } from "components/User";
 
 import T from "common/i18n";
+import { Game } from "components/Game";
 
 export interface AppProps {
   cookie: string;
@@ -121,21 +122,27 @@ export const Main = (props: AppProps) => {
           name="userplat"
           title={T.translate("app.components.main.selectTitle") as string}
         >
-          {usernames.map((u) => (
-            <option value={[u.username, u.platform]}>
-              {u.username} - {prettyPlatformName(u.platform)}
-            </option>
-          ))}
+          {usernames
+            .filter((u) => game.plateform.includes(u.platform))
+            .map((u) => (
+              <option value={[u.username, u.platform]}>
+                {u.username} - {prettyPlatformName(u.platform)}
+              </option>
+            ))}
         </select>
 
-        {username && <User user={username} cookie={props.cookie} />}
+        {username && (
+          <User user={username} cookie={props.cookie} title={game} />
+        )}
       </div>
       <div
         style={{
           padding: "20px",
         }}
       >
-        Page
+        {username && (
+          <Game title={game} username={username} cookie={props.cookie} />
+        )}
       </div>
     </div>
   );

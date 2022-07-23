@@ -1,10 +1,12 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { getCodPoints } from "common/api";
+import { Title } from "common/api";
 import { UsernamePlatform } from "components/Main";
 
 import T from "common/i18n";
+import { NoneProperties } from "common/properties";
 
 export interface UserProps {
+  title: Title<NoneProperties, NoneProperties, NoneProperties>;
   user: UsernamePlatform;
   cookie: string;
 }
@@ -14,16 +16,16 @@ export const User = (props: UserProps) => {
 
   // fetch the cod points
   useEffect(() => {
-    getCodPoints(props.cookie, props.user.username, props.user.platform).then(
-      (codPoints) => {
+    props.title
+      .getCodPoints(props.cookie, props.user.username, props.user.platform)
+      .then((codPoints) => {
         if (codPoints) {
           setCodPoints(codPoints);
         } else {
           setCodPoints(-1);
         }
-      }
-    );
-  }, [props.user]);
+      });
+  }, [props.user, props.title]);
 
   return (
     <div
