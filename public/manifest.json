@@ -1,0 +1,14 @@
+{
+  "name": "COD API Read",
+  "description": "Read COD API",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "action": {
+    "default_title": "Open menu"
+  },
+  "host_permissions": ["https://my.callofduty.com/"],
+  "permissions": ["activeTab", "scripting", "cookies"],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
