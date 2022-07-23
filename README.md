@@ -2,6 +2,8 @@
 
 Chromium extension to use the my.callofduty.com API
 
+![Demo](docs/demo1.png)
+
 ### Install
 
 **This project is still in work in progress!!!**
