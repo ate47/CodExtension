@@ -1,0 +1,59 @@
+name: Feature request 🌟
+description: Ask a new feature
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping to improve this repository!
+  - type: dropdown
+    id: dropdown_ml
+    attributes:
+      label: Title
+      description: Title
+      options:
+        - "Call of Duty: Vanguard"
+        - "Call of Duty: Black Ops Cold war"
+        - "Call of Duty: Modern warfare 2019"
+        - "Call of Duty: Black Ops 4"
+        - "Call of Duty: Infinite Warfare"
+        - "Call of Duty: WWII"
+        - "Call of Duty: Black Ops 3"
+        - "Other/Multiple (write it/them in the next field)"
+        - "None"
+    validations:
+      required: true
+  - type: input
+    id: title
+    attributes:
+      label: Custom title
+      description: Custom title
+      placeholder: "Call of Duty: Modern Warfare 2022"
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Description of the request
+      description: Small description of the request
+      placeholder: |
+        I want to be able to...
+        I want to have...
+    validations:
+      required: true
+  - type: dropdown
+    id: dropdown_id
+    attributes:
+      label: Do I want to contribute to make it?
+      description: Do I want to contribute to make it?
+      options:
+        - "Yes"
+        - "No"
+        - "Maybe"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Something else?
+      description: Something else to inform us?
+    validations:
+      required: false
