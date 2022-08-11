@@ -20,7 +20,7 @@ body:
         - "Call of Duty: WWII"
         - "Call of Duty: Black Ops 3"
         - "Other/Multiple (write it/them in the next field)"
-        - "None"
+        - "Not related to any Call of Duty"
     validations:
       required: true
   - type: input
